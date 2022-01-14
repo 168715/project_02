@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="phone">
+    <input type="button" value="手机号验证" id="btn2">
+
+</body>
+
+<script>
+    // 手机验证
+    document.getElementById('btn2').onclick = function() {
+        var e = document.getElementById('phone').value;
+        var reg = /^1[34578]\d{9}$/;;
+        if (reg.exec(e)) {
+            document.getElementById('btn2').value = '手机验证通过';
+        } else {
+            document.getElementById('btn2').value = '手机验证失败';
+        }
+    }
+</script>
+
+
+</html>

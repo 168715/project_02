@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = '<div>{{name}}我今年{{ age }}岁了</div>';
+        // 定义正则
+        var pattern = /{{\s*([a-zA-Z]+)\s*}}/;
+
+        // 匹配正则
+        var res1 = pattern.exec(str);
+        // 替换字符串
+        str = str.replace(res1[0], res1[1]);
+        console.log(str);
+        // 第二次匹配
+        var res1 = pattern.exec(str);
+        str = str.replace(res1[0], res1[1]);
+        console.log(str);
+    </script>
+</body>
+
+</html>

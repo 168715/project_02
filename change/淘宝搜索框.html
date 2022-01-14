@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.js"></script>
+    <script src="./js/template-web.js"></script>
+    <style>
+        .box {
+            width: 400px;
+            margin: 50px auto;
+        }
+        
+        #suggest-list {
+            width: 300px;
+            border: 1px solid gray;
+            display: none;
+        }
+        
+        .item-list {
+            line-height: 30px;
+            padding-left: 5px;
+        }
+        
+        .item-list:hover {
+            cursor: pointer;
+            background-color: gray;
+        }
+        
+        #ipt {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input id="ipt" type="search" placeholder="请输入您想搜索的内容">
+        <button id="btn">搜索</button><br>
+        <div id="suggest-list"></div>
+    </div>
+</body>
+<script type="text/html" id="tpl-suggestlist">
+    {{each result}}
+    <div class="item-list">{{$value[0]}}</div>
+    {{/each}}
+
+</script>
+<script>
+    $(function() {
+
+        var timer = null;
+        var cacheobj = {};
+
+
+
+        function send(kw) {
+            timer = setTimeout(function() {
+                getlist(kw);
+            }, 500)
+        }
+
+        // 判断输入内容是否为空
+        $('#ipt').on('keyup', function() {
+            clearTimeout(timer);
+            var keywords = $(this).val().trim();
+            if (keywords.length <= 0) {
+                return $("#suggest-list").empty().hide();
+            }
+
+            if (cacheobj[keywords]) {
+                return suggestList(cacheobj[keywords])
+            }
+
+            send(keywords);
+        })
+
+        // 创建jsonp请求
+        function getlist(kw) {
+            $.ajax({
+                url: 'http://suggest.taobao.com/sug?q=' + kw,
+                dataType: 'jsonp',
+                success: function(res) {
+                    suggestList(res);
+                }
+            })
+        }
+        // 模板化
+        function suggestList(res) {
+            if (res.result.length <= 0) {
+                return $("#suggest-list").empty().hide();
+            }
+            var htmlStr = template('tpl-suggestlist', res);
+            $("#suggest-list").html(htmlStr).show();
+
+            var k = $('#ipt').val().trim();
+            cacheobj[k] = res;
+
+        }
+    })
+</script>
+
+</html>

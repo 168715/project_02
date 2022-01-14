@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+	@charset "utf-8";
+	/* CSS Document */
+	* {
+		margin:0;
+		padding:0;
+	}
+	
+	ul {
+		
+		list-style:none;
+	}
+	
+	.banner {
+		width:590px;
+		height:470px;
+		border:2px solid #ccc;
+		margin:100px auto;
+		position:relative;
+		overflow:hidden;
+		z-index:1;
+	}
+	
+	.banner>.img{ 
+		width:4130px; 
+		height:470px;
+		position:absolute;
+		left:0;
+		top:0;}
+	.banner>.img>li{ 
+		float:left;
+		}
+	
+	.tab {
+		position:absolute;
+		bottom:20px;
+		left:50%;
+		margin-left:-100px;
+		height:30px;
+		padding-left:10px;
+		background:rgba(0,0,0,.2);
+		border-radius:15px;
+		z-index:999;	
+	}
+	.tab:hover {
+		background:rgba(0,0,0,.7);
+		transform:scale(1.2);
+	}
+	.tab li {
+		width:20px;
+		height:20px;
+		float:left;
+		background:#fff;
+		border-radius:50%;
+		margin:5px 10px 0 0;
+		opacity:0.6;	
+	    cursor:pointer;
+	}
+	.tab li.active {
+		background:#f60;
+	}
+	.btn {
+	    opacity: 0;
+	    
+	   	z-index:999;	
+	}
+	.btn span {
+		display:block;
+		width:50px;
+		height:100px;
+		background:rgba(0,0,0,0.6);
+		color:#fff;
+		font-size:40px;
+		line-height:100px;
+		text-align:center;
+		cursor:pointer;
+	}
+	.btn .prev {
+		position:absolute;
+		left:0;
+		top:50%;
+		margin-top:-50px;
+	}
+	.btn .next {
+		position:absolute;
+		right:0;
+		top:50%;
+		margin-top:-50px;
+	}
+	
+	
+	
+	
+
+</style>
+<script src="js/yd.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		var banner=document.querySelector('.banner');
+		var btn=document.querySelector('.btn');
+		var next=document.querySelector('.next');
+		var prev=document.querySelector('.prev');
+		var img=document.querySelector('.img');
+		var len=document.querySelectorAll('.img li').length-1;
+		var len2=document.querySelectorAll('.img li').length-8;
+		var tab=document.querySelector('.tab');
+		var tabLi=document.querySelectorAll('.tab li');
+		var i=0;
+		console.log(btn);
+		// 下一张,上一张标志的显隐
+		banner.onmouseover=function(){
+			startMove(btn,'opacity',100);
+		}
+		banner.onmouseout=function(){
+			startMove(btn,'opacity',0);
+		}
+		
+		// 下一张,上一张标志的设置
+		btn.onmouseover=function(){
+			clearInterval(timer2);
+		}
+		btn.onmouseout=function(){
+			timer2=setInterval(lunbo,2000);
+		}
+		
+		// 小圆圈设置
+		tab.onmouseenter=function(){
+			clearInterval(timer2);
+		}
+		tab.onmouseout=function(){
+			timer2=setInterval(lunbo,2000);
+		}
+		for(var m=0;m<tabLi.length;m++){
+			tabLi[m].index=m;
+			tabLi[m].onclick=function(){
+				for(var n=0;n<tabLi.length;n++){
+					tabLi[n].className='';
+				}
+				this.className='active';
+				startMove(img,'left',this.index*(-590));
+			}
+		}
+		
+		// 下一张点击设置
+		next.onclick=function(){
+			i++;
+			// console.log(i);
+			startMove(img,'left',i*(-590));
+			if(i==len){
+				i=0;
+			}
+			active();
+		}
+		// 上一张点击设置
+		prev.onclick=function(){
+			i--;
+			if(i==len2){
+				i=5;
+			}
+			// console.log(i);
+			startMove(img,'left',i*(-590));
+			active();
+		}
+		
+		function active(){
+			for(let j=0;j<tabLi.length;j++){
+				tabLi[j].className="";
+				tabLi[i].className="active";
+				}
+		}
+		
+		// 轮播定时器
+		timer2=setInterval(lunbo,2000);
+		
+		function lunbo(){
+			next.click();
+		}
+		
+	}
+</script>
+</head>
+
+<body>
+<div class="banner">
+    <ul class="img">
+        <li>
+            <a href="#"><img src="img/tu1.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu2.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu3.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu4.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu5.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu6.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="img/tu1.jpg"></a>
+        </li>
+        
+    </ul>
+     <ul class="tab">
+        
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+     </ul>
+ 
+    <div class="btn">
+        <span class="prev">&lt;</span>
+        <span class="next">&gt;</span>
+    </div>
+
+</div>				
+</body>
+</html>
