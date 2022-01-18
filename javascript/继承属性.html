@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class Father {
+        //     constructor() {
+
+        //     }
+        //     test() {
+        //         console.log(123)
+        //     }
+        // }
+        // 用extends方法继承父类
+        // class Son extends Father {
+
+        // }
+        // var son = new Son();
+        // 调用父类的方法
+        // son.test();
+        class Father {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            sum() {
+                var a = this.x;
+                var b = this.y;
+                console.log(a + b);
+            }
+        }
+        class Son extends Father {
+            constructor(x, y) {
+                // 用super方法把x，y传递给父类,super方法一定要放在开头
+                super(x, y);
+                this.x = x;
+                this.y = y;
+
+            }
+            test() {
+                console.log(this.x + this.y);
+            }
+        }
+        var son = new Son(5, 6);
+        // 调用父类的sum函数
+        son.sum();
+        // 调用自己的test函数
+        son.test();
+        var father = new Father(5, 5);
+        father.sum();
+    </script>
+</body>
+
+</html>

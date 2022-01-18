@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .box {
+        width: 772px;
+        height: 70px;
+        padding: 8px 20px;
+        color: #a6afbc;
+        position: relative;
+        background-color: hotpink;
+        margin: 100px auto;
+    }
+    
+    li {
+        width: 69px;
+        list-style: none;
+        height: 69px;
+        margin-left: 10px;
+        float: left;
+    }
+    
+    .active .big {
+        display: block;
+    }
+    
+    .active .small {
+        display: none;
+    }
+    
+    .active {
+        width: 224px;
+    }
+    
+    img {
+        display: block;
+    }
+    
+    .big {
+        width: 224px;
+        display: none;
+    }
+    
+    .small {
+        width: 69px;
+        height: 69px;
+        position: absolute;
+        top: 8px;
+        left: 20;
+        border-radius: 5px;
+    }
+</style>
+
+
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz1.jpg" alt="" class="small">
+                    <img src="./img/wz1-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li class="active">
+                <a href="javascript:">
+                    <img src="./img/wz2.jpg" alt="" class="small">
+                    <img src="./img/wz2-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz3.jpg" alt="" class="small">
+                    <img src="./img/wz3-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz4.jpg" alt="" class="small">
+                    <img src="./img/wz4-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz5.jpg" alt="" class="small">
+                    <img src="./img/wz5-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz6.jpg" alt="" class="small">
+                    <img src="./img/wz6-big.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:">
+                    <img src="./img/wz7.jpg" alt="" class="small">
+                    <img src="./img/wz7-big.png" alt="" class="big">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    $(function() {
+        $('.box li').on('mouseenter', function() {
+            $(this).stop().animate({
+                width: 224
+            }).find('.small').stop().fadeOut().siblings('.big').stop().fadeIn();
+            $(this).siblings().stop().animate({
+                width: 69
+            }).find('.small').stop().fadeIn().siblings('.big').stop().fadeOut();
+
+        })
+
+    })
+</script>
+
+</html>
