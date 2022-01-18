@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(200deg, #5ee7df, #b490ca);
+    perspective: 2000px;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    border-radius: 30px;
+    /* 光标变手 */
+    cursor: pointer;
+    box-shadow: 1px 1px 20px rgb(0, 0, 0.1);
+    /* 给父盒子设置为3d样式 */
+    transform-style: preserve-3d;
+    animation: rotateOut 1.2s cubic-bezier(0.6, -0.47, 0.33, 1.5) forwards;
+}
+
+.card:hover {
+    animation: rotate 1.2s cubic-bezier(0.6, -0.47, 0.33, 1.5) forwards;
+}
+
+.content,
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: '宋体';
+    /* 垂直排列 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 平均分配每一个子元素的高度 */
+    justify-content: space-around;
+    background: linear-gradient(200deg, white, pink, skyblue);
+    font-size: 20px;
+    letter-spacing: 5px;
+    border-radius: 30px;
+}
+
+.back {
+    /* 沿y轴旋转180度 */
+    transform: rotateY(180deg);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes rotateOut {
+    0% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}

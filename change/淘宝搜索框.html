@@ -95,7 +95,7 @@
             }
             var htmlStr = template('tpl-suggestlist', res);
             $("#suggest-list").html(htmlStr).show();
-
+            // 去除两端空格
             var k = $('#ipt').val().trim();
             cacheobj[k] = res;
 

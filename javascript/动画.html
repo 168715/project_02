@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            /* 水平居中 */
+            justify-content: center;
+            /* 垂直居中 */
+            align-items: center;
+            background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
+            background-size: 500%;
+            /* 执行动画：动画名 时长 线性的 无限次播放 */
+            animation: bgcolor 15s linear infinite;
+        }
+        
+        .box {
+            color: wheat;
+            font-size: 30px;
+            /* 字间距 */
+            letter-spacing: 15px;
+        }
+        
+        @keyframes bgcolor {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        渐变背景动画
+    </div>
+</body>
+
+</html>

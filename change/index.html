@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jQuery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            width: 1000px;
+            height: 150px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid greenyellow;
+        }
+        
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+        }
+        
+        li {
+            list-style: none;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <li><img src="./img/wz1.jpg" alt=""></li>
+        <li><img src="./img/wz2.jpg" alt=""></li>
+        <li><img src="./img/wz3.jpg" alt=""></li>
+        <li><img src="./img/wz4.jpg" alt=""></li>
+        <li><img src="./img/wz5.jpg" alt=""></li>
+        <li><img src="./img/wz6.jpg" alt=""></li>
+        <li><img src="./img/wz7.jpg" alt=""></li>
+    </div>
+</body>
+<script>
+    $(function() {
+        $('img').mouseenter(function() {
+            $(this).stop().animate({
+                width: "110px",
+                height: "110px"
+            }, 100)
+        });
+        $('img').mouseout(function() {
+            $(this).stop().animate({
+                width: "100px",
+                height: "100px"
+            }, 100)
+        });
+
+    })
+</script>
+
+</html>
